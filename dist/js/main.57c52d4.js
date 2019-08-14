@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{tjUo:function(e,n,t){"use strict";t.r(n);var r=t("fFL7"),i=function(){var e=this.$createElement;return(this._self._c||e)("router-view")};i._withStripped=!0;var o=t("KHd+"),p=Object(o.a)({},i,[],!1,null,null,null);p.options.__file="src/App.vue";var u=p.exports;t("D66Q");new r.a({el:"#app",render:function(e){return e(u)}})}},[["tjUo",1,2]]]);
-//# sourceMappingURL=main.57c52d4.js.map

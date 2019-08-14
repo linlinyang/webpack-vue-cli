@@ -8,7 +8,11 @@ export default new Router({
     mode: 'history',
     routes: [{
         path: '/',
-        name: 'Login',
+        name: 'login',
         component: Login
+    },{
+        path: '/home',
+        name: 'home',
+        component: () => import('@/views/Home/index')
     }]
 });

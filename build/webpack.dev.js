@@ -2,7 +2,6 @@ const webpackMerge = require('webpack-merge');
 const path = require('path');
 const pathResolve = filename => path.resolve(__dirname,'../',filename);
 const base = require('./webpack.base.js');
-const webpack = require('webpack');
 
 //webpack使用环境变量文档： https://webpack.js.org/guides/environment-variables/
 module.exports = env => {
@@ -12,6 +11,7 @@ module.exports = env => {
             open: true,
             compress: true,
             hot: true,
+            historyApiFallback: true,
             contentBase: pathResolve('dist'),
             proxy: {
                 '/api': {
@@ -23,13 +23,6 @@ module.exports = env => {
                 }
             }
         },
-        mode: 'development',
-        optimization: {
-            moduleIds: 'hashed'
-        },
-        plugins: [
-            new webpack.NamedChunksPlugin(),
-            new webpack.HotModuleReplacementPlugin()
-        ]
+        mode: 'development'
     });
 };

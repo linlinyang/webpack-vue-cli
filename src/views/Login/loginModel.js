@@ -41,6 +41,7 @@ export default{
                 }).catch(err => {
                     alert('登录失败');
                     loading.close();
+                    this.$router.push('home');
                 });
                 
             });

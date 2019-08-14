@@ -15,16 +15,19 @@ module.exports = env => {
         mode: 'production',
         devtool: 'source-map',
         optimization: {
-            minimizer: [new TerserPlugin({// 压缩js代码
-                parallel: true,//使用多进程并行执行任务来提高构建效率
-                sourceMap: true,// 将错误消息位置映射到模块
-                cache: true,// 启用文件缓存
-                terserOptions: {
-                    compress: {
-                        drop_console: false//true
+            minimizer: [
+                new TerserPlugin({// 压缩js代码
+                    parallel: true,//使用多进程并行执行任务来提高构建效率
+                    sourceMap: true,// 将错误消息位置映射到模块
+                    cache: true,// 启用文件缓存
+                    terserOptions: {
+                        compress: {
+                            drop_console: false//true
+                        }
                     }
-                }
-            }),new OptimizeCssAssetsPlugin()]
+                }),
+                new OptimizeCssAssetsPlugin() //压缩css文件
+            ]
         },
         plugins: [
             new CleanWebpackPlugin(),

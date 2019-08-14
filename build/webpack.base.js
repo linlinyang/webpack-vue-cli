@@ -96,17 +96,15 @@ module.exports = env => {
         },
         optimization: {
             moduleIds: 'hashed', //使用hash生成的值作为模块id来进行长缓存
-            runtimeChunk: { //打包后将包之间的依赖关系单独打包进一个文件（下面name属性指定文件名称），进行缓存优化
-                name: 'runtime' 
-            },
+            runtimeChunk: 'single', //分离webpack运行文件到一个单独文件
             splitChunks: { //splitChunksPlugin代码分割文档：https://webpack.js.org/plugins/split-chunks-plugin/
                 chunks: 'all', //无论同步还是异步代码都进行分割
-                minSize: 30000, //当超过指定大小时做代码分割
-                minChunks: 1, //最少的分割块
+                minSize: 30000, //形成一个新代码块最小的体积
+                minChunks: 1, //在分割之前，改代码块至少被复用1次
                 maxAsyncRequests: 5,//按需加载的最大并行数
                 maxInitialRequests: 3,//入口最大并行请求数
                 cacheGroups: { //缓存组：如果满足vendor的条件，就按vender打包，否则按default打包
-                    vendor: {
+                    vendor: { //将依赖包单独打包到vendors的文件中，依赖不会经常修改，进行长缓存
                         test: /[\\/]node_modules[\\/]/,
                         name: 'vendors',
                         chunks: 'all',
@@ -125,7 +123,8 @@ module.exports = env => {
             new htmlWebpackPlugin({//
                 title: 'Vue config',
                 filename: pathResolve('dist/index.html'),
-                template: pathResolve('index.html')
+                template: pathResolve('index.html'),
+                favicon: pathResolve('favicon.ico')
             }),
             new VueLoaderPlugin()
         ]
