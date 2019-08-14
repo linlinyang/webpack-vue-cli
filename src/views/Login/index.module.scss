@@ -1,0 +1,52 @@
+.login{
+    @include size(100%,100%);
+    display: table;
+
+    .login-wrapper{
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .avatar{
+        @include size(60px,60px);
+        overflow: hidden;
+        border-radius: 50%;
+        margin: 20px auto;
+
+        img{
+            @include size(100%,100%)
+        }
+    }
+
+    :global{
+        .el-card{
+            width: 500px;
+            margin: 0 auto;
+
+            .el-card__header{
+                color: #3f98e4;
+            }
+        }
+
+    }
+
+    .img-wrap{
+        @include size(100%,40px);
+        img{
+            @include size(100%,100%);
+            vertical-align: middle;
+            cursor: pointer;
+        }
+    }
+
+    .submit-wrap{
+        width: 100%;
+        text-align: center;
+
+        :global{
+            .el-button{
+                width: 100px;
+            }
+        }
+    }
+}

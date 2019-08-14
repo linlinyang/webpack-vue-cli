@@ -1,7 +1,7 @@
 @mixin size(
     $width,
-    $height,
-    $lineHeight
+    $height: null,
+    $lineHeight: null
 ) {
     @if $width {
         width: $width;

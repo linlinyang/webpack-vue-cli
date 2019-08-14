@@ -4,6 +4,15 @@ const htmlWebpackPlugin = require('html-webpack-plugin'); //文档地址：https
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //提取css为外部样式,文档地址：https://www.npmjs.com/package/mini-css-extract-plugin
 const VueLoaderPlugin = require('vue-loader/lib/plugin');//vue-loader文档：https://vue-loader.vuejs.org/zh/
 
+const resourcesLoader = {//引入全局scss变量，文档：https://www.npmjs.com/package/sass-resources-loader
+    loader: 'sass-resources-loader',
+    options: {
+        resources: [
+            pathResolve('assets/css/mixins.scss')
+        ]
+    }
+};
+
 module.exports = env => {
     const devMode = !!env.development; //是否为开发模式
     const outputFileName = devMode 
@@ -23,6 +32,7 @@ module.exports = env => {
                 loader: 'babel-loader'
             },{
                 test: /\.(sa|sc|c)ss$/,
+                exclude: /\.module\.(sa|sc|c)ss$/i,
                 use: [
                     devMode ? 'style-loader' : MiniCssExtractPlugin.loader,//开发模式使用内联样式，生产环境提取css为外部样式
                     {
@@ -31,10 +41,27 @@ module.exports = env => {
                             importLoaders: 1
                         }
                     },
+                    'postcss-loader',
+                    'sass-loader',
+                    resourcesLoader
+                ]
+            },{
+                test: /\.module\.(sa|sc|c)ss$/,
+                use: [
+                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,//开发模式使用内联样式，生产环境提取css为外部样式
                     {
-                        loader: 'postcss-loader'
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            modules: {//xxx.module.scss文件开启css modules
+                                mode: 'local',
+                                localIdentName: '[local]-[hash:5]'
+                            }
+                        }
                     },
-                    'sass-loader'
+                    'postcss-loader',
+                    'sass-loader',
+                    resourcesLoader
                 ]
             },{
                 test: /\.(png|jpg|gif|svg)$/,
@@ -47,13 +74,23 @@ module.exports = env => {
                     }
                 }]
             },{
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 100000,
+                        outputPath: 'fonts'
+                    }
+                }]
+            },{
                 test: /\.vue$/,
                 loader: 'vue-loader'
             }]
         },
         resolve: {
             alias: {//路径别名
-                '@': pathResolve('src/')
+                '@': pathResolve('src/'),
+                '#root': pathResolve('')
             },
             extensions: ['.js','.vue'] //自动解析的扩展
         },
@@ -83,11 +120,6 @@ module.exports = env => {
                     }
                 }
             }
-        },
-        externals: {//外部扩展，无需打包
-            vue: 'Vue',
-            'vue-router': 'VueRouter',
-            vuex: 'Vuex'
         },
         plugins: [
             new htmlWebpackPlugin({//

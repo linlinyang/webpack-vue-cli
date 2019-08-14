@@ -6,7 +6,7 @@ const loginForm = Object.keys(schema).reduce((reducer,field) => {
     return reducer;
 },{});
 
-const state = {
+const state = {//表单数据
     loginForm
 };
 
@@ -17,7 +17,7 @@ const mutations = {
 };
 
 const actions = {
-    postLogin({commit,state}){
+    postLogin({commit,state}){//请求登录
         return axios.post('/api/login',{
             ...state.loginForm
         });

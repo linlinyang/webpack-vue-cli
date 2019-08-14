@@ -2,6 +2,9 @@ import {
     mapActions,
     mapState
 } from 'vuex';
+import {
+    Loading
+} from 'element-ui';
 
 export default{
     data(){
@@ -18,6 +21,29 @@ export default{
         }
     },
     methods: {
-        ...mapActions('login',['postLogin'])
+        ...mapActions('login',['postLogin']),
+        submitForm(){
+            const formEl = this.formEl;
+
+            formEl.validate(valid => {
+                if(!valid){//验证未通过
+                    return ;
+                }
+                const loading = Loading.service({
+                    lock: true,
+                    text: 'Loading',
+                    spinner: 'el-icon-loading',
+                    background: 'rgba(0, 0, 0, 0.7)'
+                });
+                this.postLogin().then(res => {//调用登录接口
+                    alert('登录成功');
+                    loading.close();
+                }).catch(err => {
+                    alert('登录失败');
+                    loading.close();
+                });
+                
+            });
+        }
     }
 }

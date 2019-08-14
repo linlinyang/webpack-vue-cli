@@ -12,7 +12,16 @@ module.exports = env => {
             open: true,
             compress: true,
             hot: true,
-            contentBase: pathResolve('dist')
+            contentBase: pathResolve('dist'),
+            proxy: {
+                '/api': {
+                    target: 'http://dc.bocai.com/api',
+                    pathRewrite: {
+                        '^/api': '/backend'
+                    },
+                    changeOrigin: true
+                }
+            }
         },
         mode: 'development',
         optimization: {
