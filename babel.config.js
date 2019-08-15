@@ -1,6 +1,5 @@
 //babel 配置文件
 
-//core-js建议装：npm install core-js@2 --save;3.0+的版本使用'useBuiltIns': 'usage'有问题
 module.exports = api => {
     api.cache(true);
 
@@ -9,7 +8,8 @@ module.exports = api => {
             '@babel/preset-env',
             {
                 'useBuiltIns': 'usage',
-                'modules': false
+                'modules': false,
+                'corejs': 3
             }
         ]
     ];

@@ -14,6 +14,9 @@ module.exports = env => {
     return webpackMerge.smart(base(env),{
         mode: 'production',
         devtool: 'source-map',
+        performance: {
+            maxEntrypointSize: 4000000 // 打包后入口网页css+js超过4M时，警告提示
+        },
         optimization: {
             minimizer: [
                 new TerserPlugin({// 压缩js代码

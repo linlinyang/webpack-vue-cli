@@ -5,7 +5,8 @@
         "module": "commonjs",
         "allowSyntheticDefaultImports": true,
         "paths": {
-            "@/*": ["src/*"]
+            "@/*": ["src/*"],
+            "#root/*": [""]
         }
     },
     "exclude": ["node_modules", "dist"],

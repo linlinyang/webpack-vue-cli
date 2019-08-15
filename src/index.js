@@ -2,7 +2,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './store';
-import 'element-ui/lib/theme-chalk/index.css';
+import '#root/utils/autoPolyfill';
 
 new Vue({
     el: '#app',
