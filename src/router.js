@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import loadAsyncComponent from '#root/utils/asyncComponent';
+import loadAsyncComponent from '@r/utils/asyncComponent';
 
 Vue.use(Router);
 
@@ -17,6 +17,6 @@ export default new Router({
     },{
         path: '*',
         name: 'error',
-        component: () => loadAsyncComponent(import(/* webpackChunkName: "home" */'@/views/ErrorPage/index'))
+        component: () => loadAsyncComponent(import(/* webpackChunkName: "error" */'@/views/ErrorPage/index'))
     }]
 });

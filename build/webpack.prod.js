@@ -1,7 +1,7 @@
 const webpack = require('webpack');
-const webpackMerge = require('webpack-merge');
+const webpackMerge = require('webpack-merge'); //合并配置文件
 const base = require('./webpack.base');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 提取css文件到外部样式表中,文档：https://webpack.js.org/plugins/mini-css-extract-plugin/
 const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
@@ -13,9 +13,9 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');//
 module.exports = env => {
     return webpackMerge.smart(base(env),{
         mode: 'production',
-        devtool: 'source-map',
+        devtool: 'source-map', // 调试生产代码，不需要请删除
         performance: {
-            maxEntrypointSize: 4000000 // 打包后入口网页css+js超过4M时，警告提示
+            maxEntrypointSize: 2000000 // 打包后入口网页css+js超过2M时，警告提示
         },
         optimization: {
             minimizer: [
@@ -25,7 +25,7 @@ module.exports = env => {
                     cache: true,// 启用文件缓存
                     terserOptions: {
                         compress: {
-                            drop_console: false//true
+                            drop_console: false //设置为true清除console.log打印
                         }
                     }
                 }),
@@ -33,9 +33,9 @@ module.exports = env => {
             ]
         },
         plugins: [
-            new CleanWebpackPlugin(),
-            new MiniCssExtractPlugin({
-                filename: '[name].[contenthash:7].css'
+            new CleanWebpackPlugin(), // 打包前清除dist目录
+            new MiniCssExtractPlugin({ // 提取css文件到外部样式表中
+                filename: 'css/[name].[contenthash:7].css'
             })
         ]
     });

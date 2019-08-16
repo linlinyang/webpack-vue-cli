@@ -81,7 +81,7 @@ import {
     Card
 } from 'element-ui';
 import CaptchaImg from '@/components/CaptchaImg/index';
-import avatar from '#root/assets/images/avatar.jpg';
+import avatar from '@r/assets/images/avatar.jpg';
 
 export default {
     name: 'Login',

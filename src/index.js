@@ -1,8 +1,8 @@
+import '@r/utils/autoPolyfill';
 import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './store';
-import '#root/utils/autoPolyfill';
 
 new Vue({
     el: '#app',

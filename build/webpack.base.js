@@ -23,7 +23,8 @@ module.exports = env => {
         entry: pathResolve('src/index.js'),
         output: {
             filename: outputFileName,
-            path: pathResolve('dist')
+            path: pathResolve('dist'),
+            publicPath: devMode ? '' : '/dist/'
         },
         module: {
             rules: [{
@@ -90,7 +91,7 @@ module.exports = env => {
         resolve: {
             alias: {//路径别名
                 '@': pathResolve('src/'),
-                '#root': pathResolve('')
+                '@r': pathResolve('')
             },
             extensions: ['.js','.vue'] //自动解析的扩展
         },
