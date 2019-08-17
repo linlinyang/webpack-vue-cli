@@ -121,7 +121,7 @@ module.exports = env => {
             }
         },
         plugins: [
-            new htmlWebpackPlugin({//
+            new htmlWebpackPlugin({ //创建html入口，自动引入资源
                 title: 'Vue config',
                 filename: pathResolve('dist/index.html'),
                 template: pathResolve('index.html'),

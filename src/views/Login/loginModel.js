@@ -6,6 +6,10 @@ import {
     Loading
 } from 'element-ui';
 
+/* 
+ * 生成视图所需的数据，UI交互
+ */
+
 export default{
     data(){
         return {

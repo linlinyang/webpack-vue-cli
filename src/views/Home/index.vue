@@ -1,5 +1,14 @@
 <template>
     <div class="home">
-        <p>This is home page</p>
+        <p>{{ welcome }}</p>
     </div>
 </template>
+
+<script>
+import model from './model';
+
+export default {
+    name: 'Home',
+    mixins: [model]
+};
+</script>

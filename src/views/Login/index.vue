@@ -21,7 +21,6 @@
                         <component
                             :is="schema[field].type"
                             :name="field"
-                            :value="schema[field].value"
                             :placeholder="schema[field].placeholder"
                             :disabled="schema[field].disabled"
                             v-model="loginForm[field]"
@@ -37,7 +36,6 @@
                                 <component
                                     :is='schema[field].type'
                                     :name='field'
-                                    :value='schema[field].value'
                                     :placeholder='schema[field].placeholder'
                                     :disabled='schema[field].disabled'
                                     :options='schema[field].options'

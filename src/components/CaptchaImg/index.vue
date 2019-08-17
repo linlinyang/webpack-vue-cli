@@ -1,3 +1,6 @@
+/* 
+ * 验证码图片
+ */
 <template>
     <img 
         :src="src"

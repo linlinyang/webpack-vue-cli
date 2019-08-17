@@ -1,10 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import loadAsyncComponent from '@r/utils/asyncComponent';
+import {
+    loadAsyncComponent
+} from '@r/utils/router';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
     mode: 'history',
     routes: [{
         path: '/',
@@ -20,3 +22,5 @@ export default new Router({
         component: () => loadAsyncComponent(import(/* webpackChunkName: "error" */'@/views/ErrorPage/index'))
     }]
 });
+
+export default router;

@@ -1,3 +1,6 @@
+/* 
+ * 表单字段列表
+ */
 export default {
     uname: {
         type: 'Input',

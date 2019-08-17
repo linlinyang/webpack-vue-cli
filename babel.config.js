@@ -7,16 +7,16 @@ module.exports = api => {
         [
             '@babel/preset-env',
             {
-                'useBuiltIns': 'usage',
+                'useBuiltIns': 'usage', // 按需引入babel-polyfill
                 'modules': false,
-                'corejs': 3
+                'corejs': 3 // 安装corejs3一定要指定版本，不然会找不到目录报错
             }
         ]
     ];
 
     const plugins = [
         [
-            'component',
+            'component',//按需加载element-ui
             {
                 libraryName: 'element-ui',
                 styleLibraryName: 'theme-chalk'

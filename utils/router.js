@@ -6,12 +6,12 @@ import ErrorPage from '@/views/ErrorPage/index';
 * @params {Object},需要加载的组件,例如import('@/views/Home/index')
 * @return {Object}, 返回一个Promise对象
 */
-export default function loadAsyncComponent(AsyncView){
+export function loadAsyncComponent(asyncView){
     const asyncHandler = () => ({
-        component: AsyncView,
+        component: asyncView,
         loading: Loading,
         error: ErrorPage,
-        delay: 10000,
+        delay: 200,
         timeout: 3000
     });
 
@@ -22,4 +22,3 @@ export default function loadAsyncComponent(AsyncView){
         }
     });
 }
-

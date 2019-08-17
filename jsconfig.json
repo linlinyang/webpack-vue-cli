@@ -6,7 +6,7 @@
         "allowSyntheticDefaultImports": true,
         "paths": {
             "@/*": ["src/*"],
-            "#root/*": [""]
+            "@r/*": [""]
         }
     },
     "exclude": ["node_modules", "dist"],
