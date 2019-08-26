@@ -125,7 +125,8 @@ module.exports = env => {
                 title: 'Vue config',
                 filename: pathResolve('dist/index.html'),
                 template: pathResolve('index.html'),
-                favicon: pathResolve('favicon.ico')
+                favicon: pathResolve('favicon.ico'),
+                minify: !devMode
             }),
             new VueLoaderPlugin()
         ]
