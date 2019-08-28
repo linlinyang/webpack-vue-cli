@@ -105,17 +105,16 @@ module.exports = env => {
                 maxAsyncRequests: 5,//按需加载的最大并行数
                 maxInitialRequests: 3,//入口最大并行请求数
                 cacheGroups: { //缓存组：如果满足vendor的条件，就按vender打包，否则按default打包
-                    vendor: { //将依赖包单独打包到vendors的文件中，依赖不会经常修改，进行长缓存
+                    vendors: { 
                         test: /[\\/]node_modules[\\/]/,
-                        name: 'vendors',
+                        name: 'vendor',
                         chunks: 'all',
                         priority: -10, //打包优先级，值越大，优先级越高
                     },
-                    default: {
-                        minChunks: 2,
-                        priority: -20,
-                        reuseExistingChunk: true,
-                        name: 'common'
+                    commons: {
+                        chunks: 'all',
+                        priority: -30,
+                        name: 'commons'
                     }
                 }
             }
