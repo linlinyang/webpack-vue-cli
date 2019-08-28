@@ -105,15 +105,16 @@ module.exports = env => {
                 maxAsyncRequests: 5,//按需加载的最大并行数
                 maxInitialRequests: 3,//入口最大并行请求数
                 cacheGroups: { //缓存组：如果满足vendor的条件，就按vender打包，否则按default打包
-                    vendors: { 
+                    vendors: {//
                         test: /[\\/]node_modules[\\/]/,
                         name: 'vendor',
                         chunks: 'all',
                         priority: -10, //打包优先级，值越大，优先级越高
                     },
                     commons: {
+                        test: /[\\/]node_modules[\\/](vue|vuex|vue-router)[\\/]/,
                         chunks: 'all',
-                        priority: -30,
+                        priority: -5,
                         name: 'commons'
                     }
                 }
