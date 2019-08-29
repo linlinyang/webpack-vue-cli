@@ -12,6 +12,7 @@
                 v-bind="{...item}"
             ></TableColumn>
         </Table>
+        
     </div>
 </template>
 

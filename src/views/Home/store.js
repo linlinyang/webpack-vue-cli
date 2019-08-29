@@ -7,7 +7,12 @@ import Axios from "axios";
 
 const state = {
     welcome: 'Hello Home Page',
-    datas: {}
+    datas: {
+        data: [],
+        pindex: 0,
+        psize: 10,
+        total: 100
+    }
 };
 
 const getters = {};
