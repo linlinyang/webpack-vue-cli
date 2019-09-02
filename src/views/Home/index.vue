@@ -13,6 +13,11 @@
             ></TableColumn>
         </Table>
         
+        <div :class="styles.icons">
+            <div :class="[styles.item,styles.friends]"></div>
+            <div :class="[styles.item,styles.qq]"></div>
+            <div :class="[styles.item,styles.wechat]"></div>
+        </div>
     </div>
 </template>
 

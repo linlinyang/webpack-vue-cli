@@ -7,6 +7,7 @@ import Axios from "axios";
 
 const state = {
     welcome: 'Hello Home Page',
+    loading: false,
     datas: {
         data: [],
         pindex: 0,

@@ -1,4 +1,31 @@
+@import '~@r/dist/sprites/sprites.scss';
+
 .home-table{
     width: 500px;
     margin: 20px auto 0;
+}
+
+.icons{
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+
+    .item{
+        @include size(202px,200px);
+    }
+
+    .friends{
+        @include sprite($friends);
+    }
+    .qq{
+        @include sprite($qq);
+    }
+    .wechat{
+        @include sprite($wechat);
+    }
 }

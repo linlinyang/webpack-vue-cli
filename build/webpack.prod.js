@@ -9,7 +9,6 @@ const TerserPlugin = require('terser-webpack-plugin'); //压缩js文档：https:
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'); //压缩css文档：https://webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // 打包分析工具：https://www.npmjs.com/package/webpack-bundle-analyzer
 
-
 //webpack使用环境变量文档： https://webpack.js.org/guides/environment-variables/
 module.exports = env => {
     return webpackMerge.smart(base(env),{

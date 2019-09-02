@@ -4,6 +4,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin'); //文档地址：https
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //提取css为外部样式,文档地址：https://www.npmjs.com/package/mini-css-extract-plugin
 const VueLoaderPlugin = require('vue-loader/lib/plugin'); //vue-loader文档：https://vue-loader.vuejs.org/zh/
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin'); // script标签添加async defer等属性；文档：https://github.com/numical/script-ext-html-webpack-plugin
+const WebpackSpritesmithPlugin = require('webpack-spritesmith'); //生成雪碧图 文档：https://www.npmjs.com/package/webpack-spritesmith
 
 const resourcesLoader = {//引入全局scss变量，文档：https://www.npmjs.com/package/sass-resources-loader
     loader: 'sass-resources-loader',
@@ -94,7 +95,8 @@ module.exports = env => {
                 '@': pathResolve('src/'),
                 '@r': pathResolve('')
             },
-            extensions: ['.js','.vue'] //自动解析的扩展
+            extensions: ['.js','.vue'], //自动解析的扩展
+            modules: ['node_modules',pathResolve('dist/sprites')]
         },
         optimization: {
             moduleIds: 'hashed', //使用hash生成的值作为模块id来进行长缓存
@@ -129,6 +131,19 @@ module.exports = env => {
             }),
             new ScriptExtHtmlWebpackPlugin({ // 为所有script添加defer属性
                 defaultAttribute: 'defer'
+            }),
+            new WebpackSpritesmithPlugin({
+                src: {
+                    cwd: pathResolve('assets/icons'), // 小图标路径
+                    glob: '*.png' // 小图标后缀
+                },
+                target: {
+                    image: pathResolve('dist/sprites/sprites.png'), // 生成的雪碧图
+                    css: pathResolve('dist/sprites/sprites.scss') // 生成的scss文件，调用时引入
+                },
+                apiOptions: {
+                    cssImageRef: '~sprites.png' // css根据该设置指引sprite图
+                }
             }),
             new VueLoaderPlugin()
         ]
