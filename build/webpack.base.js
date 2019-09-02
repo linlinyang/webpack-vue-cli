@@ -2,7 +2,8 @@ const path = require('path');
 const pathResolve = filename => path.resolve(__dirname,'../',filename);
 const htmlWebpackPlugin = require('html-webpack-plugin'); //文档地址：https://www.npmjs.com/package/html-webpack-plugin
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //提取css为外部样式,文档地址：https://www.npmjs.com/package/mini-css-extract-plugin
-const VueLoaderPlugin = require('vue-loader/lib/plugin');//vue-loader文档：https://vue-loader.vuejs.org/zh/
+const VueLoaderPlugin = require('vue-loader/lib/plugin'); //vue-loader文档：https://vue-loader.vuejs.org/zh/
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin'); // script标签添加async defer等属性；文档：https://github.com/numical/script-ext-html-webpack-plugin
 
 const resourcesLoader = {//引入全局scss变量，文档：https://www.npmjs.com/package/sass-resources-loader
     loader: 'sass-resources-loader',
@@ -119,12 +120,15 @@ module.exports = env => {
             }
         },
         plugins: [
-            new htmlWebpackPlugin({ //创建html入口，自动引入资源
+            new htmlWebpackPlugin({ // 创建html入口，自动引入资源
                 title: 'Vue config',
                 filename: pathResolve('dist/index.html'),
                 template: pathResolve('index.html'),
                 favicon: pathResolve('favicon.ico'),
                 minify: !devMode
+            }),
+            new ScriptExtHtmlWebpackPlugin({ // 为所有script添加defer属性
+                defaultAttribute: 'defer'
             }),
             new VueLoaderPlugin()
         ]
