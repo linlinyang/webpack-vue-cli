@@ -63,6 +63,7 @@
                 </Form>
             </Card>
         </div>
+        {{ datas }}
     </div>
 </template>
 <script>

@@ -11,13 +11,16 @@ const loginForm = Object.keys(schema).reduce((reducer,field) => {
 },{});
 
 const state = {//表单数据
-    loginForm
+    loginForm,
+    datas: 'zoro'
 };
 
 const getters = {};
 
 const mutations = {
-
+    updateDatas(state,payload){
+        state.datas = payload.a;
+    }
 };
 
 const actions = { //登录界面UI操作
@@ -25,6 +28,14 @@ const actions = { //登录界面UI操作
         return axios.post('/api/login',{
             ...state.loginForm
         });
+    },
+    async loadData({commit}){
+        const {
+            data,
+            status
+        } = await axios.post('/api/loadData');
+        
+        commit('updateDatas',data);
     }
 };
 

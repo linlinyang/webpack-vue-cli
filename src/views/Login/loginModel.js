@@ -18,14 +18,15 @@ export default{
     },
     computed: {
         ...mapState('login',{
-            loginForm: state => state.loginForm
+            loginForm: state => state.loginForm,
+            datas: state => state.datas
         }),
         formEl(){
             return this.$refs[this.formRef];
         }
     },
     methods: {
-        ...mapActions('login',['postLogin']),
+        ...mapActions('login',['postLogin','loadData']),
         submitForm(){
             const formEl = this.formEl;
 
@@ -49,6 +50,9 @@ export default{
                 });
                 
             });
-        }
-    }
+        },
+    },
+    created(){
+        this.loadData();
+    },
 }
