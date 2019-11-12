@@ -14,5 +14,11 @@ export default {
         account: '请输入账号',
         password: '请输入密码',
         captcha: '请输入验证码'
+    },
+    message: {
+        account: '请输入账号',
+        password: '请输入密码',
+        captcha: '请输入验证码',
+        captcha1: '请输入四位数验证码'
     }
 }
