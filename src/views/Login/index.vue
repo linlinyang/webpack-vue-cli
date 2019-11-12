@@ -5,7 +5,7 @@
                 <img :src="avatar">
             </div>
             <Card>
-                <template #header>XXX管理平台</template>
+                <template #header>{{ $t('shotMsg.appName') }}</template>
                 <Form
                     :ref="formRef"
                     label-width="80px"
@@ -36,7 +36,7 @@
                                 <component
                                     :is='schema[field].type'
                                     :name='field'
-                                    :placeholder='schema[field].placeholder'
+                                    :placeholder='$t(`placeholders.${field}`)'
                                     :disabled='schema[field].disabled'
                                     :options='schema[field].options'
                                     v-model="loginForm[field]"
@@ -58,7 +58,7 @@
                         <Button 
                             type="primary"
                             @click="submitForm"
-                        >登录</Button>
+                        >{{ $t('common.login') }}</Button>
                     </div>
                 </Form>
             </Card>
@@ -81,7 +81,7 @@ import {
 } from 'element-ui';
 import CaptchaImg from '@/components/CaptchaImg/index';
 import avatar from '@r/assets/images/avatar.jpg';
-
+console.log(this);
 export default {
     name: 'Login',
     components: {
