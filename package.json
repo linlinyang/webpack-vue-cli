@@ -5,8 +5,9 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --env.development --config ./build/webpack.dev.js",
-    "build": "webpack --env.production --config ./build/webpack.prod.js"
+    "dev": "webpack-dev-server --env.development --config ./build/webpack.dev.js",
+    "build": "webpack --env.production --config ./build/webpack.prod.js",
+    "build-report": "webpack --env.production --env.report --config ./build/webpack.prod.js"
   },
   "author": "Zoro Yang",
   "license": "ISC",
@@ -27,6 +28,7 @@
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.4.1",
     "vue": "^2.6.10",
+    "vue-i18n": "^8.15.0",
     "vue-loader": "^15.7.1",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.39.3",

@@ -9,8 +9,24 @@ const TerserPlugin = require('terser-webpack-plugin'); //压缩js文档：https:
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'); //压缩css文档：https://webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // 打包分析工具：https://www.npmjs.com/package/webpack-bundle-analyzer
 
+const generatePlugins = reportMode => {
+    const plugins = [
+        new CleanWebpackPlugin(), // 打包前清除dist目录
+        new MiniCssExtractPlugin({ // 提取css文件到外部样式表中
+            filename: 'css/[name].[contenthash:7].css'
+        }),
+    ];
+    if(reportMode){
+        plugins.push(new BundleAnalyzerPlugin());
+    }
+
+    return plugins;
+};
+
 //webpack使用环境变量文档： https://webpack.js.org/guides/environment-variables/
 module.exports = env => {
+    const reportMode = !!env.report;
+    
     return webpackMerge.smart(base(env),{
         mode: 'production',
         devtool: 'source-map', // 调试生产代码，不需要请删除
@@ -33,12 +49,6 @@ module.exports = env => {
                 new OptimizeCssAssetsPlugin() //压缩css文件
             ]
         },
-        plugins: [
-            new CleanWebpackPlugin(), // 打包前清除dist目录
-            new MiniCssExtractPlugin({ // 提取css文件到外部样式表中
-                filename: 'css/[name].[contenthash:7].css'
-            }),
-            new BundleAnalyzerPlugin() // 打包大小分析
-        ]
+        plugins: generatePlugins(reportMode)
     });
 }
