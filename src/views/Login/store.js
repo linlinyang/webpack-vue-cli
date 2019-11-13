@@ -5,8 +5,9 @@ import axios from 'axios';
  * vuex数据
  */
 
-const loginForm = Object.keys(schema).reduce((reducer,field) => {
-    reducer[field] = schema[field].value || '';
+const schemaFields = schema();
+const loginForm = Object.keys(schemaFields).reduce((reducer,field) => {
+    reducer[field] = schemaFields[field].value || '';
     return reducer;
 },{});
 

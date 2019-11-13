@@ -4,11 +4,11 @@
             <div :class='styles.avatar'>
                 <img :src="avatar">
             </div>
-            <Card>
+            <Card :style="cardStyle">
                 <template #header>{{ $t('shotMsg.appName') }}</template>
                 <Form
                     :ref="formRef"
-                    label-width="80px"
+                    :label-width="babelWidth"
                     :model='loginForm'
                 >
                     <FormItem
@@ -106,9 +106,13 @@ export default {
     data(){
         return {
             styles,
-            schema,
             avatar
         };
+    },
+    computed: {
+        schema(){
+            return schema.call(this);
+        }
     },
     mixins: [model]
 }

@@ -8,7 +8,7 @@ export default {
     labels: {
         account: 'Account',
         password: 'Password',
-        captcha: 'Verify code'
+        captcha: 'Verify Code'
     },
     placeholders: {
         account: 'Please input your accounts',

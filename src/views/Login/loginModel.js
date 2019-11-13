@@ -26,6 +26,14 @@ export default{
         }),
         formEl(){
             return this.$refs[this.formRef];
+        },
+        cardStyle(){
+            return {
+                width: this.lang === 'zh_CN' ? '500px' : '600px'
+            };
+        },
+        babelWidth(){
+            return this.lang === 'zh_CN' ? '80px' : '120px';
         }
     },
     methods: {
