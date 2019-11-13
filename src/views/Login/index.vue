@@ -36,7 +36,7 @@
                                 <component
                                     :is='schema[field].type'
                                     :name='field'
-                                    :placeholder='$t(`placeholders.${field}`)'
+                                    :placeholder='schema[field].placeholder'
                                     :disabled='schema[field].disabled'
                                     :options='schema[field].options'
                                     v-model="loginForm[field]"
@@ -62,8 +62,13 @@
                     </div>
                 </Form>
             </Card>
+            <div :class="styles['language']">
+                <RadioGroup v-model="lang" @change="changeLanguage">
+                    <Radio label='zh_CN'>中文</Radio>
+                    <Radio label='en_US'>English</Radio>
+                </RadioGroup>
+            </div>
         </div>
-        {{ datas }}
     </div>
 </template>
 <script>
@@ -77,11 +82,13 @@ import {
     Button,
     Row,
     Col,
-    Card
+    Card,
+    RadioGroup,
+    Radio
 } from 'element-ui';
 import CaptchaImg from '@/components/CaptchaImg/index';
 import avatar from '@r/assets/images/avatar.jpg';
-console.log(this);
+
 export default {
     name: 'Login',
     components: {
@@ -92,7 +99,9 @@ export default {
         Button,
         Row,
         Col,
-        CaptchaImg
+        CaptchaImg,
+        RadioGroup,
+        Radio
     },
     data(){
         return {

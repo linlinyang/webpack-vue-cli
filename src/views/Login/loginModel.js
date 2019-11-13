@@ -5,6 +5,9 @@ import {
 import {
     Loading
 } from 'element-ui';
+import {
+    loadLanguageAsync
+} from '@r/lang/';
 
 /* 
  * 生成视图所需的数据，UI交互
@@ -13,20 +16,20 @@ import {
 export default{
     data(){
         return {
-            formRef: 'loginForm'
+            formRef: 'loginForm',
+            lang: 'zh_CN'
         };
     },
     computed: {
         ...mapState('login',{
-            loginForm: state => state.loginForm,
-            datas: state => state.datas
+            loginForm: state => state.loginForm
         }),
         formEl(){
             return this.$refs[this.formRef];
         }
     },
     methods: {
-        ...mapActions('login',['postLogin','loadData']),
+        ...mapActions('login',['postLogin']),
         submitForm(){
             const formEl = this.formEl;
 
@@ -51,8 +54,10 @@ export default{
                 
             });
         },
+        changeLanguage(val){
+            loadLanguageAsync(val);
+        }
     },
     created(){
-        this.loadData();
     },
 }

@@ -12,7 +12,7 @@ const loginForm = Object.keys(schema).reduce((reducer,field) => {
 
 const state = {//表单数据
     loginForm,
-    datas: 'zoro'
+    lang: 'zh_CN'
 };
 
 const getters = {};
@@ -28,14 +28,6 @@ const actions = { //登录界面UI操作
         return axios.post('/api/login',{
             ...state.loginForm
         });
-    },
-    async loadData({commit}){
-        const {
-            data,
-            status
-        } = await axios.post('/api/loadData');
-        
-        commit('updateDatas',data);
     }
 };
 

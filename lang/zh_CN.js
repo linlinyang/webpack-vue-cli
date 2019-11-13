@@ -5,7 +5,7 @@ export default {
     shotMsg: {
         appName: 'XXX管理平台'
     },
-    lables: {
+    labels: {
         account: '账号',
         password: '密码',
         captcha: '验证码'
@@ -15,7 +15,7 @@ export default {
         password: '请输入密码',
         captcha: '请输入验证码'
     },
-    message: {
+    messages: {
         account: '请输入账号',
         password: '请输入密码',
         captcha: '请输入验证码',
